@@ -21,14 +21,15 @@
 
     <div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px);">
         <div class="card" style="width: 100%; max-width: 640px;">
-            <div class="card-body text-center p-4 p-md-5">
-                <div style="position: relative;"><button id="settingsToggle" style="position: absolute; top: 1rem; right: 1rem;"><i class="fa-solid fa-gear fa-rotate-270" style="color: #eef4ed;"></i></button></div>
+            <div style="position: relative;" class="card-body text-center p-4 p-md-5">
+
+                <button class="btn-icon btn-custom" style="position: absolute; top: 1.2rem; right: 1.2rem; background: transparent; border: none; padding: 0; font-size: 1.5rem; cursor: pointer;" id="settingsToggle" style="position: absolute; top: 1rem; right: 1rem;"><i class="fa-solid fa-gear fa-rotate-270"></i></button>
                 <div id="modeLabel" class="study-mode h3 mb-1" style="letter-spacing: 4px;">STUDY</div>
                 <div id="timerDisplay" class="study-mode display-1 fw-bold my-2" style="font-size: 6rem; line-height: 1.2;">25:00</div>
 
                 <div class="d-flex gap-3 justify-content-center flex-wrap mt-3">
                     <button id="startPauseBtn" class="btn btn-custom btn-study">Start</button>
-                    <button id="resetBtn" class="btn btn-custom" style="border-color: #eef4ed; color: #eef4ed;">Reset</button>
+                    <button id="resetBtn" class="btn btn-custom btn-reset" style="border-color: #eef4ed; color: #eef4ed;">Reset</button>
                     <button id="skipBtn" class="btn btn-custom btn-skip">Skip</button>
                 </div>
 

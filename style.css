@@ -1,140 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap');
 
-:root {
-  --bg-body: #000000;
-  --bg-card: #333232;
-  --text-primary: #eef4ed;
-  --text-muted: #a0a0a0;
-  --accent-study: #f9b9f2;
-  --accent-break: #828c51;
-}
+  :root {
+    --bg-body: #000000;
+    --bg-card: #333232;
+    --text-primary: #eef4ed;
+    --text-muted: #a0a0a0;
+    --accent-study: #f9b9f2;
+    --accent-break: #828c51;
+  }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
 
-.settingsPanel {
-  max-width: 640px;
-  margin-top: 1rem;
-  background-color: var(--bg-card);
-  border: none;
-  border-radius: 24px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  transition: box-shadow 0.3s ease;
-}
+  .btn-custom:active { transform: scale(0.95); }
 
-body {
-  background-color: var(--bg-body);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
-  font-family: 'Cinzel', serif;
-  min-height: 100vh;
-  color: var(--text-primary);
-}
+  .btn-study:active { background: var(--accent-study); }
 
-.card {
-  background-color: var(--bg-card);
-  border: none;
-  border-radius: 24px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  transition: box-shadow 0.3s ease;
-}
+  .btn-break:active { background: var(--accent-break); }
 
-h1, .h1, .display-1 {
-  font-family: 'Cinzel', serif;
-  color: var(--text-primary);
-  letter-spacing: 3px;
-}
+  .btn-custom:focus { outline: none; }
 
-.study-mode {
-  color: var(--accent-study);
-}
-.break-mode {
-  color: var(--accent-break);
-}
+  .btn-study:focus { box-shadow: 0 0 0 3px rgba(249,185,242,0.3); }
 
-#timerDisplay {
-  font-size: 6rem;
-  font-weight: 700;
-  letter-spacing: 8px;
-  transition: color 0.3s ease;
-  font-family: 'Cinzel', serif;
-  line-height: 1.2;
-}
+  .settingsPanel {
+    max-width: 640px;
+    margin-top: 1rem;
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    transition: box-shadow 0.3s ease;
+  }
 
-.btn-custom {
-  background: transparent;
-  border: 2px solid var(--text-primary);
-  color: var(--text-primary);
-  border-radius: 50px;
-  padding: 0.6rem 2rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-}
-.btn-custom:hover {
-  background: var(--text-primary);
-  color: var(--bg-card);
-}
+  body {
+    background-color: var(--bg-body);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    color: var(--text-primary);
+  }
 
-.btn-study {
-  border-color: var(--accent-study);
-  color: var(--accent-study);
-}
-.btn-study:hover {
-  background: var(--accent-study);
-  color: var(--bg-body);
-}
+  .card {
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    transition: box-shadow 0.3s ease;
+  }
 
-.btn-break {
-  border-color: var(--accent-break);
-  color: var(--accent-break);
-}
-.btn-break:hover {
-  background: var(--accent-break);
-  color: var(--bg-body);
-}
+  h1, .h1, .display-1 {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    letter-spacing: 3px;
+  }
 
-.btn-skip {
-  border-color: var(--text-muted);
-  color: var(--text-muted);
-}
-.btn-skip:hover {
-  background: var(--text-muted);
-  color: var(--bg-body);
-}
+  .study-mode {
+    color: var(--accent-study);
+  }
+  .break-mode {
+    color: var(--accent-break);
+  }
 
-input[type="number"] {
-  background: transparent;
-  border: 2px solid var(--text-muted);
-  color: var(--text-primary);
-  border-radius: 8px;
-  padding: 0.4rem 0.8rem;
-  width: 80px;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  text-align: center;
-  font-size: 1rem;
-}
-input[type="number"]:focus {
-  outline: none;
-  border-color: var(--accent-study);
-  box-shadow: 0 0 0 3px rgba(249, 185, 242, 0.15);
-}
+  #timerDisplay {
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    transition: color 0.3s ease;
+    font-family: 'Cinzel', serif;
+    line-height: 1.2;
+  }
 
-/* ---- DASHBOARD TEXT OVERRIDES ---- */
-.text-muted {
-  color: var(--text-muted) !important;
-  letter-spacing: 1px;
-  font-size: 0.7rem !important;
-  text-transform: uppercase;
-}
+  .btn-custom {
+    background: transparent;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    border-radius: 50px;
+    padding: 0.6rem 2rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  .btn-icon {
+    color: #eef4ed;
+  }
 
-hr {
-  opacity: 0.4;
-}
+  .btn-icon:hover{
+    color: #f9b9f2!important;
+  }
+  .btn-reset:hover { 
+    background: var(--text-primary);
+    color: var(--bg-body)!important;
+  }
+
+  .btn-study {
+    border-color: var(--accent-study);
+    color: var(--accent-study);
+  }
+  .btn-study:hover {
+    background: var(--accent-study);
+    color: var(--bg-body);
+  }
+
+  .btn-break {
+    border-color: var(--accent-break);
+    color: var(--accent-break);
+  }
+  .btn-break:hover {
+    background: var(--accent-break);
+    color: var(--bg-body);
+  }
+
+  .btn-skip {
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+  }
+  .btn-skip:hover {
+    background: var(--text-muted);
+    color: var(--bg-body);
+  }
+
+  input[type="number"] {
+    background: transparent;
+    border: 2px solid var(--text-muted);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    width: 80px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1rem;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent-study);
+    box-shadow: 0 0 0 3px rgba(249, 185, 242, 0.15);
+  }
+
+  /* ---- DASHBOARD TEXT OVERRIDES ---- */
+  .text-muted {
+    color: var(--text-muted) !important;
+    letter-spacing: 1px;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+  }
+
+  hr {
+    opacity: 0.4;
+  }
