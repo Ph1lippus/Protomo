@@ -11,7 +11,7 @@ document.getElementById("settingsToggle").addEventListener("click", toggleSettin
 
 function applyConfig() {
     const newStudy = parseInt(document.getElementById("studyInput").value);
-    const newBreak = parseInt(document.getElementById("BreakInput").value);
+    const newBreak = parseInt(document.getElementById("breakInput").value);
 
     if (isNaN(newStudy) || newStudy < 1) { return; }
     if (isNaN(newBreak) || newBreak < 1) { return; }
@@ -19,7 +19,10 @@ function applyConfig() {
     studyMinutes = newStudy;
     breakMinutes = newBreak;
 
-    remainingSeconds = studyMinutes * 60;
-
+    if (isRunning === false) {
+        remainingSeconds = studyMinutes * 60;
+        isStudy = true;
+    }
+    render();
     document.getElementById('settingsPanel').style.display = 'none';
 }
