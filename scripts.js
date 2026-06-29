@@ -5,6 +5,18 @@ let isRunning = false;
 let isStudy = true;
 let timerInterval = null;
 let totalStudyMinutes = 0;
+let history = [];
+
+const saveHistory = localStorage.getItem("protomoTotal");
+if (saveHistory !== null) {
+    history = JSON.parse(saveHistory);
+}
+
+const saveTotal = localStorage.getItem("protomoTotal");
+if (saveTotal !== null) {
+    totalStudyMinutes = parseInt(saveTotal, 10);
+}
+
 
 function resetTimer() {
     clearInterval(timerInterval);
@@ -58,8 +70,16 @@ function tick() {
     remainingSeconds = remainingSeconds - 1;
     if (remainingSeconds <= 0) {
         isStudy = !isStudy;
+
+        if (!isStudy) {
+            totalStudyMinutes = totalStudyMinutes + studyMinutes;
+            localStorage.setItem("protomoTotal", String(totalStudyMinutes));
+            saveSession("study", studyMinutes);
+        }
+
         if (isStudy) {
-        remainingSeconds = studyMinutes * 60;
+            saveSession("break", breakMinutes);
+            remainingSeconds = studyMinutes * 60;
         } else {
             remainingSeconds = breakMinutes * 60;
         }
@@ -111,13 +131,25 @@ function render() {
     }
 
     document.getElementById('startPauseBtn').textContent = isRunning ? 'Pause' : 'Start';
+    document.getElementById("todayStudyDisplay").textContent = totalStudyMinutes + " min";
 }
 
 
 
+function saveSession(type, duration) {
+    const now  = new Date();
+    const date = now.toISOString().split("T")[0];
+    const time = now.toTimeString().split(0, 5);
 
+    const entry = {
+        type : type, 
+        duration : duration,
+        date : date,
+        time : time
+    }
 
-const saveTotal = localStorage.getItem(protomoTotal);
-if (protomoTotal !== null) {
-    totalStudyMinutes = protomoTotal;
+    history.pushState(entry);
+    localStorage.setItem("protomoTotal", JSON.stringify(history));
 }
+
+render();
