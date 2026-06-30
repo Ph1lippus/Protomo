@@ -20,13 +20,16 @@
     </nav>
 
     <nav class="sub-nav" style="background: rgba(51, 50, 50, 0.5); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.5rem 0;">
-        <div class="container d-flex justify-content-center gap-4">
-            <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #f9b9f2; cursor: default;">Timer</span>
-            <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;">History</span>
-            <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;">Dashboard</span>
+        <div class="container d-flex align-items-center" style="position: relative;">
+            <div style="flex: 1; display: flex; justify-content: center; gap: 2rem;">
+                <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #f9b9f2; cursor: default;">Timer</span>
+                <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;">History</span>
+                <span class="text-muted" style="font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;">Dashboard</span>
+            </div>
+            <button id="themeToggle" style="background: transparent; border: 1px solid var(--text-muted); color: var(--text-primary); border-radius: 50px; padding: 0.4rem 1.5rem; font-family: 'Cinzel'; font-size: 1rem; cursor: pointer; transition: 0.2s; flex-shrink: 0;">White</button>
         </div>
     </nav>
-
+    
 
     <div class="container d-flex align-items-center justify-content-center" style="flex-direction: column; min-height: calc(100vh - 120px);">
         <div class="card-wrapper" style="position: relative; width: 100%; max-width: 640px;">
@@ -34,7 +37,7 @@
                 <div style="position: relative;" class="card-body text-center p-4 p-md-5">
 
                     <button class="btn-icon btn-custom" style="position: absolute; top: 1.2rem; right: 1.2rem; background: transparent; border: none; padding: 0; font-size: 1.5rem; cursor: pointer;" id="settingsToggle" style="position: absolute; top: 1rem; right: 1rem;"><i class="fa-solid fa-gear fa-rotate-270"></i></button>
-                    <div id="modeLabel" class="study-mode h3 mb-1" style="letter-spacing: 4px;">STUDY</div>
+                    <div id="modeLabel" class="study-mode h3 mb-1" style="letter-spacing: 4px; font-weight: 700;">STUDY</div>
                     <div id="timerDisplay" class="study-mode display-1 fw-bold my-2" aria-live="polite">
                         <span id="timerMinutesTens" class="timer-digit">2</span>
                         <span id="timerMinutesOnes" class="timer-digit">5</span>
@@ -45,23 +48,23 @@
 
                     <div class="d-flex gap-3 justify-content-center flex-wrap mt-3">
                         <button id="startPauseBtn" class="btn btn-custom btn-study">Start</button>
-                        <button id="resetBtn" class="btn btn-custom btn-reset" style="border-color: #eef4ed; color: #eef4ed;">Reset</button>
+                        <button id="resetBtn" class="btn btn-custom btn-reset">Reset</button>
                         <button id="skipBtn" class="btn btn-custom btn-skip">Skip</button>
                     </div>
 
                     <hr style="border-color: #444; margin: 2.5rem 0 1.5rem;">
                     <div class="row g-3">
                         <div class="col-6">
-                            <div class="text-muted small" style="color: #a0a0a0 !important;">Current Time</div>
-                            <div id="clockDisplay" style="font-size: 1.5rem; font-weight: 700; color: #eef4ed; font-family: 'Cinzel', serif;">--:--</div>
+                            <div class="text-muted small">Current Time</div>
+                            <div id="clockDisplay">--:--</div>
                         </div>
                         <div class="col-6">
-                            <div class="text-muted small" style="color: #a0a0a0 !important;">Date</div>
-                            <div id="dateDisplay" style="font-size: 1rem; color: #eef4ed; font-family: 'Cinzel', serif;">--</div>
+                            <div class="text-muted small">Date</div>
+                            <div id="dateDisplay">--</div>
                         </div>
                         <div class="col-12 mt-2">
-                            <div class="text-muted small" style="color: #a0a0a0 !important;">Today's Study</div>
-                            <div id="todayStudyDisplay" style="font-size: 1.2rem; font-weight: 700; color: #f9b9f2; font-family: 'Cinzel', serif;">0 min</div>
+                            <div class="text-muted small" >Today's Study</div>
+                            <div id="todayStudyDisplay">0 min</div>
                         </div>
                     </div>
 

@@ -7,7 +7,7 @@ let timerInterval = null;
 let totalStudyMinutes = 0;
 let history = [];
 
-const saveHistory = localStorage.getItem("protomoTotal");
+const saveHistory = localStorage.getItem("protomoHistory");
 if (saveHistory !== null) {
     history = JSON.parse(saveHistory);
 }
@@ -134,12 +134,24 @@ function render() {
     document.getElementById("todayStudyDisplay").textContent = totalStudyMinutes + " min";
 }
 
+function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+    const btn = document.getElementById("themeToggle");
+    if ( document.body.classList.contains("light-mode")) {
+        btn.textContent = "Dark";
+        localStorage.setItem("protomoTheme", "light")
+    } else  {
+        btn.textContent = "Light";
+        localStorage.setItem("protomoTheme", "dark")
+    }
+}
+document.getElementById("themeToggle").addEventListener("click", toggleTheme);
 
 
 function saveSession(type, duration) {
     const now  = new Date();
     const date = now.toISOString().split("T")[0];
-    const time = now.toTimeString().split(0, 5);
+    const time = now.toTimeString().slice(0, 5);
 
     const entry = {
         type : type, 
@@ -148,8 +160,15 @@ function saveSession(type, duration) {
         time : time
     }
 
-    history.pushState(entry);
-    localStorage.setItem("protomoTotal", JSON.stringify(history));
+    history.push(entry);
+    localStorage.setItem("protomoHistory", JSON.stringify(history));
 }
+
+const savedTheme = localStorage.getItem("protomoTheme");
+if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+    document.getElementById("themeToggle").textContent = "Dark";
+}
+
 
 render();

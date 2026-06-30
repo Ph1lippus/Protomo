@@ -14,6 +14,42 @@
     margin: 0;
   }
 
+  body {
+    background-color: var(--bg-body);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    color: var(--text-primary);
+  }
+
+
+  body.light-mode {
+      --bg-body: #f0eee9;
+      --bg-card: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-muted: #5a5a5a;
+      --accent-study: #b05a9e;
+      --accent-break: #6b7a3a;
+  }
+
+  body.light-mode .navbar {
+    background-color: #ffffff !important;
+    border-bottom-color: #b05a9e !important;
+  }
+
+  body.light-mode .navbar .navbar-brand {
+      color: #1a1a1a !important;
+  }
+
+  .card {
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: box-shadow 0.3s ease;
+  }
+
   .btn-custom:active { transform: scale(0.95); }
 
   .btn-study:active { background: var(--accent-study); }
@@ -40,6 +76,8 @@
     transition: opacity 0.2s, transform 0.2s;
   }
 
+
+
   #settingsPanel.open {
       opacity: 1;
       pointer-events: all;
@@ -54,23 +92,6 @@
 
   #settingsPanel label { 
     font-size: 1rem; 
-  }
-
-  body {
-    background-color: var(--bg-body);
-    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-    font-family: 'Cinzel', serif;
-    min-height: 100vh;
-    color: var(--text-primary);
-  }
-
-  .card {
-    background-color: var(--bg-card);
-    border: none;
-    border-radius: 12px;
-    color: var(--text-primary);
-    transition: box-shadow 0.3s ease;
   }
 
   h1, .h1, .display-1 {
@@ -147,6 +168,11 @@
     color: var(--bg-body)!important;
   }
 
+  .btn-reset {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+  }
+
   .btn-study {
     border-color: var(--accent-study);
     color: var(--accent-study);
@@ -199,7 +225,7 @@
     text-transform: uppercase;
     font-weight: 800;
     text-align: center;
-  }
+}
 
   hr {
     opacity: 0.4;
