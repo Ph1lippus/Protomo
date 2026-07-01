@@ -167,12 +167,11 @@ body.light-mode .nav-tab:hover {
   }
 
   .sub-nav {
-      flex-shrink: 0;
-      background: transparent !important;
-      backdrop-filter: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.5rem 0;
-  }
+    flex-shrink: 0;
+    background: transparent !important;
+    backdrop-filter: none;
+    padding: 0.5rem 0;
+}
 
   .main-container {
       flex: 1;
@@ -216,6 +215,7 @@ body.light-mode .nav-tab:hover {
     width: 100%;
     max-width: 640px;
     margin: 0 auto;
+    padding-bottom: 1rem;
 } 
 
   .btn-custom:active { transform: scale(0.95); }
@@ -230,7 +230,7 @@ body.light-mode .nav-tab:hover {
     max-width: 400px;
     width: 100%;
     position: absolute;
-    top: calc(100% + 0.5rem);
+    top: calc(100% + 1rem);
     left: 50%;
     transform: translateX(-50%) translateY(-10px);
     z-index: 10;

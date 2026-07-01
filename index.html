@@ -13,7 +13,7 @@
 
     <nav class="navbar" style="background-color: #333232; border-bottom: 2px solid #f9b9f2; padding: 0.8rem 0;">
         <div class="container justify-content-center">
-            <span class="navbar-brand mb-0 h1" style="color: #eef4ed; font-family: 'Cinzel', serif; letter-spacing: 6px; font-weight: 700;">
+            <span class="navbar-brand mb-0 h1" style="color: #eef4ed; font-family: 'Cinzel', serif; letter-spacing: 10px; font-weight: 800;">
                 PROTOMO
             </span>
         </div>
@@ -24,10 +24,15 @@
         <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
             <div style="width: 40px;"></div>
                 <div style="display: flex; gap: 2.5rem; justify-content: center;">
-                    <span class="nav-tab active" data-page="timer">Timer</span>
-                    <span class="nav-tab" data-page="history">History</span>
-                    <span class="nav-tab" data-page="dashboard">Dashboard</span>
+                    <span style="font-weight: bold;" class="nav-tab active" data-page="timer">Timer</span>
+                    <span style="font-weight: bold;" class="nav-tab" data-page="history">History</span>
+                    <span style="font-weight: bold;" class="nav-tab" data-page="dashboard">Dashboard</span>
                 </div>
+
+            <button id="menuToggle" style="background: transparent; border: none; padding: 0.4rem; font-size: 1.3rem; cursor: pointer; color: var(--text-primary); transition: transform 0.3s ease;">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+
             <div id="themeMenu" style="display: none; position: absolute; right: 0; top: calc(100% + 0.5rem); background-color: var(--bg-card); border-radius: 12px; padding: 0.8rem 1.2rem; min-width: 180px; box-shadow: 0 15px 50px rgba(0,0,0,0.6); z-index: 20; border: 1px solid rgba(255,255,255,0.06);">
                 <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
                     <span style="font-family: 'Cinzel'; font-size: 0.85rem; color: var(--text-primary);">Dark Mode</span>

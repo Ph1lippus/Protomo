@@ -136,7 +136,7 @@ function render() {
 
 function toggleTheme() {
     document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
+    const isLight = document.body.classList.contains('light-mode'); 
     document.getElementById('themeSwitch').checked = isLight;
     localStorage.setItem('protomoTheme', isLight ? 'light' : 'dark');
 }
