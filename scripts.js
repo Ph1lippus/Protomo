@@ -179,5 +179,7 @@ const savedTheme = localStorage.getItem("protomoTheme");
 if (savedTheme === "light") {
     document.body.classList.add("light-mode");
 }
+
+
 syncThemeSwitch();
 render();
