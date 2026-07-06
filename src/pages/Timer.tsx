@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import type { TimerSession } from '../types';
@@ -21,6 +22,13 @@ export const Timer: React.FC = () => {
     const saved = localStorage.getItem('protomoTotal');
     return saved ? parseInt(saved, 10) : 0;
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const totalStudyMinutesRef = useRef<any>(totalStudyMinutes);
+
+  useEffect(() => {
+    totalStudyMinutesRef.current = totalStudyMinutes;
+  }, [totalStudyMinutes]);
+
   const [clockTime, setClockTime] = useState('--:--');
   const [dateStr, setDateStr] = useState('--');
   const [showSettings, setShowSettings] = useState(false);
@@ -32,7 +40,26 @@ export const Timer: React.FC = () => {
   
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const timerIntervalRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isStudyRef = useRef<any>(isStudy);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const studyMinutesRef = useRef<any>(studyMinutes);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const breakMinutesRef = useRef<any>(breakMinutes);
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isStudyRef.current = isStudy;
+  }, [isStudy]);
+
+  useEffect(() => {
+    studyMinutesRef.current = studyMinutes;
+  }, [studyMinutes]);
+
+  useEffect(() => {
+    breakMinutesRef.current = breakMinutes;
+  }, [breakMinutes]);
 
   const loadUserData = useCallback(async () => {
     if (!user) return;
@@ -96,7 +123,7 @@ export const Timer: React.FC = () => {
     await supabase.from('sessions').insert(entry);
 
     if (type === 'study') {
-      const newTotal = totalStudyMinutes + duration;
+      const newTotal = totalStudyMinutesRef.current + duration;
       setTotalStudyMinutes(newTotal);
       localStorage.setItem('protomoTotal', String(newTotal));
       
@@ -109,22 +136,22 @@ export const Timer: React.FC = () => {
     }
   };
 
-  const tick = () => {
+const tick = useCallback(() => {
     setRemainingSeconds(prev => {
       const next = prev - 1;
       
       if (next <= 0) {
-        const completed = isStudy ? studyMinutes : breakMinutes;
-        saveToSupabase(isStudy ? 'study' : 'break', completed);
+        const completed = isStudyRef.current ? studyMinutesRef.current : breakMinutesRef.current;
+        saveToSupabase(isStudyRef.current ? 'study' : 'break', completed);
         
-        const nowStudy = !isStudy;
+        const nowStudy = !isStudyRef.current;
         setIsStudy(nowStudy);
-        return nowStudy ? studyMinutes * 60 : breakMinutes * 60;
+        return nowStudy ? studyMinutesRef.current * 60 : breakMinutesRef.current * 60;
       }
       
       return next;
     });
-  };
+  }, [saveToSupabase]);
 
   const toggleStartPause = () => {
     if (isRunning) {
@@ -249,9 +276,9 @@ export const Timer: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
             <div style={{ width: '40px' }}></div>
             <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center' }}>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab active" data-page="timer">Timer</span>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="history">History</span>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="dashboard">Dashboard</span>
+              <span style={{ fontWeight: 'bold' }} className="nav-tab active" data-page="timer" onClick={() => navigate('/timer')}>Timer</span>
+              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="history" onClick={() => navigate('/history')}>History</span>
+              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="dashboard" onClick={() => navigate('/dashboard')}>Dashboard</span>
             </div>
             <button 
               id="menuToggle" 
@@ -406,27 +433,27 @@ export const Timer: React.FC = () => {
                 <div className="row g-2 justify-content-center mb-4">
                   <div className="col-auto" style={{ textAlign: 'center' }}>
                     <label className="form-label text-muted small">Study (min)</label>
-                    <input 
-                      type="number" 
-                      id="studyInput" 
-                      className="form-control" 
-                      value={studyMinutes} 
-                      min="1" 
-                      onChange={(e) => handleStudyChange(parseInt(e.target.value) || 1)}
-                      style={{ background: 'transparent', borderColor: '#a0a0a0', fontFamily: "'Cinzel', serif", textAlign: 'center' }} 
-                    />
+<input 
+  type="number" 
+  id="studyInput" 
+  className="form-control" 
+  value={studyMinutes} 
+  min="1" 
+  onChange={(e) => handleStudyChange(parseInt(e.target.value) || 1)}
+  style={{ background: 'transparent', borderColor: 'var(--text-muted)', fontFamily: "'Cinzel', serif", textAlign: 'center', color: 'var(--text-primary)' }} 
+/>
                   </div>
                   <div className="col-auto" style={{ textAlign: 'center' }}>
                     <label className="form-label text-muted small">Break (min)</label>
-                    <input 
-                      type="number" 
-                      id="breakInput" 
-                      className="form-control" 
-                      value={breakMinutes} 
-                      min="1" 
-                      onChange={(e) => handleBreakChange(parseInt(e.target.value) || 1)}
-                      style={{ background: 'transparent', borderColor: '#a0a0a0', fontFamily: "'Cinzel', serif", textAlign: 'center' }} 
-                    />
+<input 
+  type="number" 
+  id="breakInput" 
+  className="form-control" 
+  value={breakMinutes} 
+  min="1" 
+  onChange={(e) => handleBreakChange(parseInt(e.target.value) || 1)}
+  style={{ background: 'transparent', borderColor: 'var(--text-muted)', fontFamily: "'Cinzel', serif", textAlign: 'center', color: 'var(--text-primary)' }} 
+/>
                   </div>
                 </div>
                 <div className="row justify-content-center mt-3">

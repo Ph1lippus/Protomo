@@ -177,7 +177,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .slider:before {
@@ -206,6 +206,12 @@ input:checked + .slider:before {
   border-radius: 25px;
   color: var(--text-primary);
   transition: box-shadow 0.3s ease;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card-wrapper {
@@ -260,6 +266,29 @@ body.light-mode .btn-icon:hover {
   width: 140px!important; 
   font-size: 1.3rem; 
   padding: 0.5rem; 
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
+#settingsPanel input[type="number"]::placeholder {
+  color: var(--text-muted) !important;
+  -webkit-text-fill-color: var(--text-muted) !important;
+}
+
+body.light-mode #settingsPanel {
+  background-color: var(--bg-card) !important;
+}
+
+body.light-mode #settingsPanel input[type="number"] {
+  background: transparent !important;
+  border-color: var(--text-muted) !important;
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
+#settingsPanel input[type="number"]::-webkit-inner-spin-button,
+#settingsPanel input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
 }
 
 #settingsPanel label { 
