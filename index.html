@@ -1,102 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Protomo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav class="navbar" style="background-color: #333232; border-bottom: 2px solid #f9b9f2; padding: 0.8rem 0;">
-        <div class="container justify-content-center">
-            <span class="navbar-brand mb-0 h1" style="color: #eef4ed; font-family: 'Cinzel', serif; letter-spacing: 10px; font-weight: 800;">
-                PROTOMO
-            </span>
-        </div>
-    </nav>
-    <nav class="sub-nav">
-    <div class="container">
-        <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
-            <div style="width: 40px;"></div>
-                <div style="display: flex; gap: 2.5rem; justify-content: center;">
-                    <span style="font-weight: bold;" class="nav-tab active" data-page="timer">Timer</span>
-                    <span style="font-weight: bold;" class="nav-tab" data-page="history">History</span>
-                    <span style="font-weight: bold;" class="nav-tab" data-page="dashboard">Dashboard</span>
-                </div>
-            <button id="menuToggle" style="background: transparent; border: none; padding: 0.4rem; font-size: 1.3rem; cursor: pointer; color: var(--text-primary); transition: transform 0.3s ease;">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-            <div id="themeMenu" style="display: none; position: absolute; right: 0; top: calc(100% + 0.5rem); background-color: var(--bg-card); border-radius: 12px; padding: 0.8rem 1.2rem; min-width: 180px; box-shadow: 0 15px 50px rgba(0,0,0,0.6); z-index: 20; border: 1px solid rgba(255,255,255,0.06);">
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-                    <span style="font-family: 'Cinzel'; font-size: 0.85rem; color: var(--text-primary);">Dark Mode</span>
-                    <label class="switch">
-                        <input type="checkbox" id="themeSwitch">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-    <div class="main-container">
-        <div class="card-wrapper" style="position: relative; width: 100%; max-width: 640px;">
-            <div class="card" style="width: 100%; max-width: 640px;">
-                <div style="position: relative;" class="card-body text-center p-4 p-md-5">
-                    <button class="btn-icon btn-custom" style="position: absolute; top: 1.2rem; right: 1.2rem; background: transparent; border: none; padding: 0; font-size: 1.5rem; cursor: pointer;" id="settingsToggle" style="position: absolute; top: 1rem; right: 1rem;"><i class="fa-solid fa-gear fa-rotate-270"></i></button>
-                    <div id="modeLabel" class="study-mode h3 mb-1" style="letter-spacing: 4px; font-weight: 700;">STUDY</div>
-                    <div id="timerDisplay" class="study-mode display-1 fw-bold my-2" aria-live="polite">
-                        <span id="timerMinutesTens" class="timer-digit">2</span>
-                        <span id="timerMinutesOnes" class="timer-digit">5</span>
-                        <span class="timer-separator">:</span>
-                        <span id="timerSecondsTens" class="timer-digit">0</span>
-                        <span id="timerSecondsOnes" class="timer-digit">0</span>
-                    </div>
-                    <div class="d-flex gap-3 justify-content-center flex-wrap mt-3">
-                        <button id="startPauseBtn" class="btn btn-custom btn-study">Start</button>
-                        <button id="resetBtn" class="btn btn-custom btn-reset">Reset</button>
-                        <button id="skipBtn" class="btn btn-custom btn-skip">Skip</button>
-                    </div>
-                    <hr style="border-color: #444; margin: 2.5rem 0 1.5rem;">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="text-muted small">Current Time</div>
-                            <div id="clockDisplay">--:--</div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-muted small">Date</div>
-                            <div id="dateDisplay">--</div>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <div class="text-muted small" >Today's Study</div>
-                            <div id="todayStudyDisplay">0 min</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="settingsPanel">
-            <div class="row g-2 justify-content-center mb-4">
-                <div class="col-auto"  style="text-align: center; ">
-                    <label class="form-label text-muted small">Study (min)</label>
-                            <input type="number" id="studyInput" class="form-control" value="25" min="1" style="background: transparent; border-color: #a0a0a0; font-family: 'Cinzel', serif; text-align: center;">
-                </div>
-                <div class="col-auto"  style="text-align: center; ">
-                    <label class="form-label text-muted small">Break (min)</label>
-                        <input type="number" id="breakInput" class="form-control" value="5" min="1" style="background: transparent; border-color: #a0a0a0; font-family: 'Cinzel', serif; text-align: center;">
-                </div>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <div class="col-auto">
-                    <button id="applyBtn" class="btn btn-custom btn-study">Apply</button>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="scripts.js"></script>
-</body>
+  </body>
 </html>
-
-
