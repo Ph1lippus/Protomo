@@ -23,3 +23,5 @@ export interface UserStats {
   total_study_minutes: number;
   created_at?: string;
 }
+
+

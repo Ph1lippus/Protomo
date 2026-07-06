@@ -6,7 +6,7 @@ import { History } from './pages/History';
 import { Progress } from './pages/Progress';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-// App.css removed - using index.css for global styles
+import Footer from './components/Footer';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
@@ -24,27 +24,30 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/timer" element={
-        <PrivateRoute>
-          <Timer />
-        </PrivateRoute>
-      } />
-      <Route path="/history" element={
-        <PrivateRoute>
-          <History />
-        </PrivateRoute>
-      } />
-      <Route path="/dashboard" element={
-        <PrivateRoute>
-          <Progress />
-        </PrivateRoute>
-      } />
-      <Route path="/" element={<Navigate to="/timer" />} />
-      <Route path="*" element={<Navigate to="/timer" />} />
-    </Routes>
+    <>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/timer" element={
+              <PrivateRoute>
+                <Timer />
+              </PrivateRoute>
+            } />
+            <Route path="/history" element={
+              <PrivateRoute>
+                <History />
+              </PrivateRoute>
+            } />
+            <Route path="/dashboard" element={
+              <PrivateRoute>
+                <Progress />
+              </PrivateRoute>
+            } />
+            <Route path="/" element={<Navigate to="/timer" />} />
+            <Route path="*" element={<Navigate to="/timer" />} />
+          </Routes>
+        <Footer />
+    </>
   );
 }
 
