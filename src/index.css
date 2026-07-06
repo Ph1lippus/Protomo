@@ -298,6 +298,14 @@ h1, .h1, .display-1 {
   gap: 0;
 }
 
+#timerDisplay.study-mode {
+  color: var(--accent-study);
+}
+
+#timerDisplay.break-mode {
+  color: var(--accent-break);
+}
+
 .timer-digit,
 .timer-separator {
   display: inline-flex;
@@ -308,6 +316,7 @@ h1, .h1, .display-1 {
   text-align: center;
   height: 1.2em;
   flex-shrink: 0;
+  color: inherit;
 }
 
 .timer-separator {

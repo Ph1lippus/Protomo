@@ -4,7 +4,7 @@ import { useAuth } from './contexts/AuthContext';
 import { Timer } from './pages/Timer';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-import './App.css';
+// App.css removed - using index.css for global styles
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();

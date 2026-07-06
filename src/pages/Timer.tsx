@@ -327,33 +327,34 @@ export const Timer: React.FC = () => {
                 {isStudy ? 'STUDY' : 'BREAK'}
               </div>
               
-              <div 
-                id="timerDisplay" 
-                style={{ 
-                  display: 'flex', 
-                  justifyContent: 'center', 
-                  alignItems: 'center', 
-                  width: '100%', 
-                  maxWidth: '100%', 
-                  margin: '0 auto', 
-                  fontVariantNumeric: 'tabular-nums', 
-                  fontFeatureSettings: '"tnum" 1', 
-                  fontSize: '6rem', 
-                  fontWeight: 700, 
-                  letterSpacing: '0.02em', 
-                  transition: 'color 0.3s ease', 
-                  fontFamily: "'Cinzel', serif", 
-                  lineHeight: 1.2, 
-                  whiteSpace: 'nowrap', 
-                  gap: 0 
-                }}
-              >
-                <span id="timerMinutesTens" className="timer-digit">{minuteTens}</span>
-                <span id="timerMinutesOnes" className="timer-digit">{minuteOnes}</span>
-                <span className="timer-separator">:</span>
-                <span id="timerSecondsTens" className="timer-digit">{secondTens}</span>
-                <span id="timerSecondsOnes" className="timer-digit">{secondOnes}</span>
-              </div>
+               <div 
+                 id="timerDisplay" 
+                 className={isStudy ? 'study-mode' : 'break-mode'}
+                 style={{ 
+                   display: 'flex', 
+                   justifyContent: 'center', 
+                   alignItems: 'center', 
+                   width: '100%', 
+                   maxWidth: '100%', 
+                   margin: '0 auto', 
+                   fontVariantNumeric: 'tabular-nums', 
+                   fontFeatureSettings: '"tnum" 1', 
+                   fontSize: '6rem', 
+                   fontWeight: 700, 
+                   letterSpacing: '0.02em', 
+                   transition: 'color 0.3s ease', 
+                   fontFamily: "'Cinzel', serif", 
+                   lineHeight: 1.2, 
+                   whiteSpace: 'nowrap', 
+                   gap: 0
+                 }}
+               >
+                 <span id="timerMinutesTens" className="timer-digit">{minuteTens}</span>
+                 <span id="timerMinutesOnes" className="timer-digit">{minuteOnes}</span>
+                 <span className="timer-separator">:</span>
+                 <span id="timerSecondsTens" className="timer-digit">{secondTens}</span>
+                 <span id="timerSecondsOnes" className="timer-digit">{secondOnes}</span>
+               </div>
 
               <div className="d-flex gap-3 justify-content-center flex-wrap mt-3">
                 <button id="startPauseBtn" className="btn btn-custom btn-study" onClick={toggleStartPause}>
@@ -381,26 +382,27 @@ export const Timer: React.FC = () => {
               </div>
             </div>
 
-            {showSettings && (
-              <div 
-                id="settingsPanel" 
-                style={{ 
-                  maxWidth: '400px', 
-                  width: '100%', 
-                  position: 'absolute', 
-                  top: 'calc(100% + 1rem)', 
-                  left: '50%', 
-                  transform: 'translateX(-50%) translateY(0)', 
-                  zIndex: 10, 
-                  backgroundColor: 'var(--bg-card)', 
-                  border: 'none', 
-                  borderRadius: '25px', 
-                  padding: '1.2rem 1.8rem', 
-                  color: 'var(--text-primary)', 
-                  opacity: 1, 
-                  pointerEvents: 'all' 
-                }}
-              >
+             {showSettings && (
+               <div 
+                 id="settingsPanel" 
+                 className="open"
+                 style={{ 
+                   maxWidth: '400px', 
+                   width: '100%', 
+                   position: 'absolute', 
+                   top: 'calc(100% + 1rem)', 
+                   left: '50%', 
+                   transform: 'translateX(-50%) translateY(0)', 
+                   zIndex: 10, 
+                   backgroundColor: 'var(--bg-card)', 
+                   border: 'none', 
+                   borderRadius: '25px', 
+                   padding: '1.2rem 1.8rem', 
+                   color: 'var(--text-primary)', 
+                   opacity: 1, 
+                   pointerEvents: 'all' 
+                 }}
+               >
                 <div className="row g-2 justify-content-center mb-4">
                   <div className="col-auto" style={{ textAlign: 'center' }}>
                     <label className="form-label text-muted small">Study (min)</label>
