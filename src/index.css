@@ -438,6 +438,11 @@ input[type="number"]:focus {
 
 hr {
   opacity: 0.4;
+  border-color: var(--text-muted) !important;
+}
+
+body.light-mode hr {
+  border-color: var(--text-muted) !important;
 }
 
 
@@ -539,6 +544,39 @@ input[type="number"] {
   color: #fff;
   transform: translateY(-50%) scale(1.04);
   box-shadow: 0 0 0 3px rgba(249, 185, 242, 0.15);
+}
+
+/* Table styles for History page */
+.table {
+  color: var(--text-primary);
+}
+
+.table th {
+  color: var(--text-muted);
+  border-bottom-color: var(--text-muted);
+}
+
+.table td {
+  color: var(--text-primary);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .table th {
+  color: var(--text-muted);
+  border-bottom-color: var(--text-muted);
+}
+
+body.light-mode .table td {
+  color: var(--text-primary);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .table-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Footer styles */

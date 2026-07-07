@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import type { TimerSession } from '../types';
+import Footer from '../components/Footer';
+import { Navbar } from '../components/Navbar';
 
 export const History: React.FC = () => {
   const [sessions, setSessions] = useState<TimerSession[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   const loadSessions = useCallback(async () => {
     if (!user) return;
@@ -38,27 +38,7 @@ export const History: React.FC = () => {
 
   return (
     <>
-      <nav className="navbar" style={{ backgroundColor: '#333232', borderBottom: '2px solid #f9b9f2', padding: '0.8rem 0' }}>
-        <div className="container justify-content-center">
-          <span className="navbar-brand mb-0 h1" style={{ color: '#eef4ed', fontFamily: "'Cinzel', serif", letterSpacing: '10px', fontWeight: 800 }}>
-            PROTOMO
-          </span>
-        </div>
-      </nav>
-      
-      <nav className="sub-nav">
-        <div className="container">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ width: '40px' }}></div>
-            <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center' }}>
-              <span style={{ fontWeight: 'bold', cursor: 'pointer' }} className="nav-tab" onClick={() => navigate('/timer')}>Timer</span>
-              <span style={{ fontWeight: 'bold', cursor: 'pointer' }} className="nav-tab active" onClick={() => navigate('/history')}>History</span>
-              <span style={{ fontWeight: 'bold', cursor: 'pointer' }} className="nav-tab" onClick={() => navigate('/dashboard')}>Dashboard</span>
-            </div>
-            <div style={{ width: '40px' }}></div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="main-container">
         <div className="card-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '800px' }}>
@@ -69,7 +49,7 @@ export const History: React.FC = () => {
               </h2>
               
               {loading ? (
-                <div style={{ textAlign: 'center', padding: '2rem' }}>Loading...</div>
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-primary)' }}>Loading...</div>
               ) : sessions.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)' }}>
                   No sessions recorded yet. Start the timer to track your progress!
@@ -87,7 +67,7 @@ export const History: React.FC = () => {
                     </thead>
                     <tbody>
                       {sessions.map((session, index) => (
-                        <tr key={index} style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+<tr key={index} className="table-row">
                           <td style={{ color: 'var(--text-primary)' }}>{formatDate(session.date)}</td>
                           <td style={{ color: 'var(--text-primary)' }}>{session.time}</td>
                           <td>
@@ -106,6 +86,7 @@ export const History: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

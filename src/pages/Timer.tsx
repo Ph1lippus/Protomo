@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import type { TimerSession } from '../types';
+import Footer from '../components/Footer';
 
 export const Timer: React.FC = () => {
   const [studyMinutes, setStudyMinutes] = useState(() => {
@@ -263,9 +264,9 @@ const tick = useCallback(() => {
 
   return (
     <>
-      <nav className="navbar" style={{ backgroundColor: '#333232', borderBottom: '2px solid #f9b9f2', padding: '0.8rem 0' }}>
+      <nav className="navbar" style={{ backgroundColor: 'var(--bg-card)', borderBottom: '2px solid var(--accent-study)', padding: '0.8rem 0' }}>
         <div className="container justify-content-center">
-          <span className="navbar-brand mb-0 h1" style={{ color: '#eef4ed', fontFamily: "'Cinzel', serif", letterSpacing: '10px', fontWeight: 800 }}>
+          <span className="navbar-brand mb-0 h1" style={{ color: 'var(--text-primary)', fontFamily: "'Cinzel', serif", letterSpacing: '10px', fontWeight: 800 }}>
             PROTOMO
           </span>
         </div>
@@ -383,7 +384,7 @@ const tick = useCallback(() => {
                  <span id="timerSecondsOnes" className="timer-digit">{secondOnes}</span>
                </div>
 
-              <div className="d-flex gap-3 justify-content-center flex-wrap mt-3">
+<div className="d-flex gap-3 justify-content-center flex-wrap mt-3">
                 <button id="startPauseBtn" className="btn btn-custom btn-study" onClick={toggleStartPause}>
                   {isRunning ? 'Pause' : 'Start'}
                 </button>
@@ -391,7 +392,7 @@ const tick = useCallback(() => {
                 <button id="skipBtn" className="btn btn-custom btn-skip" onClick={skipBlock}>Skip</button>
               </div>
 
-              <hr style={{ borderColor: '#444', margin: '2.5rem 0 1.5rem' }} />
+              <hr style={{ borderColor: 'var(--text-muted)', margin: '2.5rem 0 1.5rem' }} />
 
               <div className="row g-3">
                 <div className="col-6">
@@ -466,6 +467,7 @@ const tick = useCallback(() => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
