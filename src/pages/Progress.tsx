@@ -154,27 +154,6 @@ export const Progress: React.FC = () => {
                       </div>
                     </div>
                     <div className="col-md-3 col-sm-6">
-                  {/* Stats Cards */}
-                  <div className="row g-4 mb-5">
-                    <div className="col-md-3 col-sm-6">
-                      <div className="card" style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--text-muted)' }}>
-                        <div className="card-body text-center">
-                          <div className="text-muted small mb-2">Total Study Time</div>
-                          <div className="h1" style={{ color: 'var(--accent-study)' }}>{totalStudyMinutes}</div>
-                          <div style={{ color: 'var(--text-primary)' }}>minutes</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                      <div className="card" style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--text-muted)' }}>
-                        <div className="card-body text-center">
-                          <div className="text-muted small mb-2">This Week</div>
-                          <div className="h1" style={{ color: 'var(--accent-study)' }}>{getWeeklyStats()}</div>
-                          <div style={{ color: 'var(--text-primary)' }}>minutes</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-3 col-sm-6">
                       <div className="card" style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--text-muted)' }}>
                         <div className="card-body text-center">
                           <div className="text-muted small mb-2">This Month</div>
@@ -274,3 +253,23 @@ export const Progress: React.FC = () => {
                               {sessions.length > 0 ? Math.round(totalStudyMinutes / 30) : 0} min
                             </span>
                           </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span style={{ color: 'var(--text-muted)' }}>Weekly Average</span>
+                            <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
+                              {Math.round(getWeeklyStats() / 7)} min/day
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import type { TimerSession } from '../types';
 import Footer from '../components/Footer';
+import { NavbarWithTheme } from '../components/NavbarWithTheme';
 
 export const Timer: React.FC = () => {
   const [studyMinutes, setStudyMinutes] = useState(() => {
@@ -48,7 +48,6 @@ export const Timer: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const breakMinutesRef = useRef<any>(breakMinutes);
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     isStudyRef.current = isStudy;
@@ -264,66 +263,12 @@ const tick = useCallback(() => {
 
   return (
     <>
-      <nav className="navbar" style={{ backgroundColor: 'var(--bg-card)', borderBottom: '2px solid var(--accent-study)', padding: '0.8rem 0' }}>
-        <div className="container justify-content-center">
-          <span className="navbar-brand mb-0 h1" style={{ color: 'var(--text-primary)', fontFamily: "'Cinzel', serif", letterSpacing: '10px', fontWeight: 800 }}>
-            PROTOMO
-          </span>
-        </div>
-      </nav>
-      
-      <nav className="sub-nav">
-        <div className="container">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
-            <div style={{ width: '40px' }}></div>
-            <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center' }}>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab active" data-page="timer" onClick={() => navigate('/timer')}>Timer</span>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="history" onClick={() => navigate('/history')}>History</span>
-              <span style={{ fontWeight: 'bold' }} className="nav-tab" data-page="dashboard" onClick={() => navigate('/dashboard')}>Dashboard</span>
-            </div>
-            <button 
-              id="menuToggle" 
-              style={{ 
-                background: 'transparent', 
-                border: 'none', 
-                padding: '0.4rem', 
-                fontSize: '1.3rem', 
-                cursor: 'pointer', 
-                color: 'var(--text-primary)', 
-                transition: 'transform 0.3s ease',
-                transform: showThemeMenu ? 'rotate(90deg)' : undefined
-              }} 
-              onClick={toggleMenu}
-            >
-              <i className="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-            <div 
-              id="themeMenu" 
-              style={{ 
-                display: showThemeMenu ? 'block' : 'none', 
-                position: 'absolute', 
-                right: 0, 
-                top: 'calc(100% + 0.5rem)', 
-                backgroundColor: 'var(--bg-card)', 
-                borderRadius: '12px', 
-                padding: '0.8rem 1.2rem', 
-                minWidth: '180px', 
-                boxShadow: '0 15px 50px rgba(0,0,0,0.6)', 
-                zIndex: 20, 
-                border: '1px solid rgba(255,255,255,0.06)' 
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-                <span style={{ fontFamily: "'Cinzel'", fontSize: '0.85rem', color: 'var(--text-primary)' }}>Dark Mode</span>
-                <label className="switch">
-                  <input type="checkbox" id="themeSwitch" checked={isLightMode} onChange={toggleTheme} />
-                  <span className="slider round"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavbarWithTheme 
+        isLightMode={isLightMode}
+        onThemeToggle={toggleTheme}
+        showThemeMenu={showThemeMenu}
+        onMenuToggle={toggleMenu}
+      />
 
       <div className="main-container">
         <div className="card-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '640px' }}>
